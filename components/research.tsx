@@ -1,110 +1,93 @@
 "use client"
 
-import { motion } from "framer-motion"
-import { Card, CardContent, CardHeader } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { FileText } from "lucide-react"
+import { useState, useEffect } from "react"
+import Link from "next/link"
+import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
+import { Menu, X } from "lucide-react"
 
-type Publication = {
-  id: number
-  title: string
-  type: "Conference" | "Journal"
-  role: string
-  year?: string
-}
+export function Navbar() {
+  const [isScrolled, setIsScrolled] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
-export function Research() {
-  const publications: Publication[] = [
-    {
-      id: 1,
-      title: "A Lightweight Deep Learning Framework for Land Cover Classification from Sentinel-2 Imagery",
-      type: "Conference",
-      role: "2nd Author",
-      year: "2023"
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10)
     }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  const navLinks = [
+    { href: "#projects", label: "Projects" },
+    { href: "#research", label: "Research" },
+    { href: "#experience", label: "Experience" },
   ]
 
-  // Define badge styles based on publication type
-  const getTypeBadgeStyle = (type: string): string => {
-    if (type === "Conference") 
-      return "bg-amber-900/20 text-amber-300 border-0";
-    return "bg-teal-900/20 text-teal-300 border-0"; // Journal
-  };
-
-  // Define badge styles based on author role
-  const getRoleBadgeStyle = (role: string): string => {
-    if (role.includes("1st")) 
-      return "bg-purple-900/20 text-purple-300 border-0";
-    if (role.includes("2nd")) 
-      return "bg-emerald-900/20 text-emerald-300 border-0";
-    return "bg-indigo-900/20 text-indigo-300 border-0"; // Coauthor
-  };
-
   return (
-    <section id="research" className="py-24 bg-slate-50/50 dark:bg-slate-900/20">
-      <div className="container mx-auto px-4 max-w-6xl">
-        <div className="mb-16 text-center">
-          <p className="text-sm font-medium text-amber-600 dark:text-amber-400 tracking-wide mb-2">SCHOLARLY WORK</p>
-          <h2 className="text-4xl font-bold tracking-tight mb-4">Research Publications</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            My contributions to academic research in remote sensing, deep learning, and environmental monitoring.
-          </p>
-        </div>
+    <header
+      className={cn(
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+        isScrolled ? "bg-background/90 backdrop-blur-md border-b" : "bg-transparent",
+      )}
+    >
+      <div className="container-custom flex items-center justify-between h-16">
+        <Link href="/" className="font-medium text-lg">
+          Poojan Brahmbhatt
+        </Link>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {publications.map((pub, index) => (
-            <motion.div
-              key={pub.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-              viewport={{ once: true, margin: "-100px" }}
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex items-center space-x-6">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-sm font-medium transition-colors hover:text-primary/70"
             >
-              <Card className="group h-full border-none bg-white dark:bg-slate-900 hover:bg-gradient-to-b hover:from-white hover:to-slate-50 dark:hover:from-slate-900 dark:hover:to-slate-800/80 overflow-hidden rounded-2xl shadow-sm hover:shadow-md transition-all duration-300">
-                <CardHeader className="p-6 pb-3 space-y-4">
-                  {/* Year label */}
-                  <div className="text-xs font-medium text-slate-500 dark:text-slate-400">
-                    {pub.year}
-                  </div>
-                  
-                  {/* Title with icon */}
-                  <div className="group-hover:text-amber-500 dark:group-hover:text-amber-400 transition-colors duration-300">
-                    <h3 className="text-xl font-medium leading-tight tracking-tight flex items-start gap-3">
-                      <FileText className="h-5 w-5 mt-0.5 flex-shrink-0 opacity-70 group-hover:opacity-100 transition-opacity" />
-                      <span>{pub.title}</span>
-                    </h3>
-                  </div>
-
-                  {/* Badges */}
-                  <div className="flex flex-wrap gap-2 pt-1">
-                    <Badge 
-                      className={`px-2.5 py-0.5 text-xs rounded-md font-medium ${getTypeBadgeStyle(pub.type)}`}
-                    >
-                      {pub.type}
-                    </Badge>
-                    <Badge 
-                      className={`px-2.5 py-0.5 text-xs rounded-md font-medium ${getRoleBadgeStyle(pub.role)}`}
-                    >
-                      {pub.role}
-                    </Badge>
-                  </div>
-                </CardHeader>
-                
-                <CardContent className="px-6 pb-6 pt-0">
-                  <div className="flex justify-between items-center">
-                    <div className="w-16 h-0.5 bg-gradient-to-r from-amber-500/10 to-amber-500/40 dark:from-amber-700/20 dark:to-amber-500/30 rounded-full mt-1"></div>
-                    
-                    {/* Citation count or other metrics could go here */}
-                    <div className="text-xs text-slate-400 dark:text-slate-500 font-medium">
-                      Remote Sensing
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
+              {link.label}
+            </Link>
           ))}
-        </div>
+          <Button asChild variant="outline" size="sm" className="rounded-full px-6">
+            <Link href="https://github.com/Poojan3108/Resume/blob/main/POOJAN%20BRAHMBHATT%20RESUME.pdf" target="_blank">
+              Resume
+            </Link>
+          </Button>
+        </nav>
+
+        {/* Mobile Menu Button */}
+        <Button
+          variant="ghost"
+          size="icon"
+          className="md:hidden"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+        </Button>
       </div>
-    </section>
+
+      {/* Mobile Navigation */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden bg-background border-b">
+          <nav className="container-custom py-4 flex flex-col space-y-4">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-sm font-medium transition-colors hover:text-primary/80 py-2"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {link.label}
+              </Link>
+            ))}
+            <Button asChild variant="outline" size="sm" className="w-full">
+              <Link href="https://poojan3108.github.io/Portfolio/" target="_blank">
+                Old Portfolio
+              </Link>
+            </Button>
+          </nav>
+        </div>
+      )}
+    </header>
   )
 }

@@ -33,7 +33,7 @@ export function Experience() {
     },
     {
       id: 3,
-      company: "Intern",
+      company: "DSU InfoTech",
       location: "Vadodara, India",
       role: "Intern",
       period: "May 2023 - June 2023",
@@ -45,7 +45,7 @@ export function Experience() {
     <section id="experience" className="section-padding bg-secondary/30">
       <div className="container-custom">
         <div className="section-subtitle">Experience</div>
-        <h2 className="section-title">Explore My Design Journey</h2>
+        <h2 className="section-title">Explore My Professional Journey</h2>
 
         <div className="mt-16">
           {experiences.map((exp, index) => (

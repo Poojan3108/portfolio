@@ -17,35 +17,27 @@ export function Experience() {
   const experiences: ExperienceItem[] = [
     {
       id: 1,
-      company: "Creative Minds",
-      location: "New York, USA",
-      role: "AI Research Scientist",
-      period: "2022 - Present",
-      description: "Leading research in deep learning models for computer vision applications.",
+      company: "CHARUSAT Space Research and Technology Center",
+      location: "Anand, India",
+      role: "Research Intern",
+      period: "Dec 2024 - May 2025",
+      description: "Developed a system for mapping possible terrestrial habitats for wildlife using remote sensory data and deep learning frameworks.",
     },
     {
       id: 2,
-      company: "Innovative Designs Inc.",
-      location: "USA",
-      role: "Machine Learning Engineer",
-      period: "2020 - 2022",
-      description: "Developed and deployed machine learning models for production environments.",
+      company: "iNeuron.ai",
+      location: "Remote",
+      role: "Intern",
+      period: "May 2024 - June 2024",
+      description: "Analysed algorithms used for detecting phishing domains by extracting key features of web page links and identifying whether they are genuine or not.",
     },
     {
       id: 3,
-      company: "Visionary Creations Ltd.",
-      location: "UK",
-      role: "Software Developer",
-      period: "2018 - 2020",
-      description: "Built web applications and services using modern frameworks and technologies.",
-    },
-    {
-      id: 4,
-      company: "FutureTech",
-      location: "Berlin, Germany",
-      role: "Research Intern",
-      period: "2017 - 2018",
-      description: "Conducted research on emerging technologies and their applications.",
+      company: "Intern",
+      location: "Vadodara, India",
+      role: "Intern",
+      period: "May 2023 - June 2023",
+      description: "Developed an e-commerce website using Wordpress and Django with hands-on experience of team collaborations and coporate interactions.",
     },
   ]
 
@@ -77,18 +69,10 @@ export function Experience() {
                   <p className="text-sm">{exp.description}</p>
                 </div>
                 <div className="md:col-span-2 flex md:justify-end items-start gap-2">
-                  <Badge variant="outline">View</Badge>
-                  <Badge variant="outline">Details</Badge>
                 </div>
               </div>
             </motion.div>
           ))}
-        </div>
-
-        <div className="mt-12 flex justify-center">
-          <Button variant="outline" className="rounded-full px-6">
-            View Full Resume
-          </Button>
         </div>
       </div>
     </section>

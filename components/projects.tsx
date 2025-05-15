@@ -79,8 +79,8 @@ export default function Projects() {
       semester: "6th Sem Internship",
       description: "ML-based system to identify and flag potential phishing domains.",
       tags: ["Python", "Keras", "TensorFlow"],
-      projectUrl: "https://example.com/phishing-detection",
-      githubUrl: "https://github.com/Poojan3108/phishing-detection",
+      projectUrl: "https://github.com/Poojan3108/Phishing-Domain-Detection",
+      githubUrl: "https://github.com/Poojan3108/Phishing-Domain-Detection",
     },
     {
       id: 8,
@@ -193,19 +193,6 @@ export default function Projects() {
               </Card>
             </motion.div>
           ))}
-        </div>
-        
-        <div className="mt-16 text-center">
-          <Button 
-            variant="outline" 
-            size="lg" 
-            className="rounded-full px-6 bg-white dark:bg-transparent border border-slate-200 dark:border-slate-800 transition-colors shadow-sm dark:text-amber-400 dark:hover:text-amber-300" 
-            asChild
-          >
-            <Link href="https://github.com/Poojan3108" target="_blank">
-              View All Projects <ArrowUpRight className="ml-2 h-4 w-4" />
-            </Link>
-          </Button>
         </div>
       </div>
     </section>

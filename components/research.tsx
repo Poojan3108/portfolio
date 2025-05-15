@@ -18,7 +18,7 @@ export function Research() {
     {
       id: 1,
       title: "A Lightweight Deep Learning Framework for Land Cover Classification from Sentinel-2 Imagery",
-      type: "6th INCET Conference",
+      type: "2025 6th International Conference for Emerging Technology (INCET)",
       role: "2nd Author",
       year: "2025"
     }
@@ -47,7 +47,7 @@ export function Research() {
           <p className="text-sm font-medium text-amber-600 dark:text-amber-400 tracking-wide mb-2">SCHOLARLY WORK</p>
           <h2 className="text-4xl font-bold tracking-tight mb-4">Research Publications</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            My contributions to academic research in remote sensing, deep learning, and environmental monitoring.
+            My contributions to academic research in deep learning, remote sensing and environmental monitoring.
           </p>
         </div>
 
@@ -62,11 +62,6 @@ export function Research() {
             >
               <Card className="group h-full border-none bg-white dark:bg-slate-900 hover:bg-gradient-to-b hover:from-white hover:to-slate-50 dark:hover:from-slate-900 dark:hover:to-slate-800/80 overflow-hidden rounded-2xl shadow-sm hover:shadow-md transition-all duration-300">
                 <CardHeader className="p-6 pb-3 space-y-4">
-                  {/* Year label */}
-                  <div className="text-xs font-medium text-slate-500 dark:text-slate-400">
-                    {pub.year}
-                  </div>
-                  
                   {/* Title with icon */}
                   <div className="group-hover:text-amber-500 dark:group-hover:text-amber-400 transition-colors duration-300">
                     <h3 className="text-xl font-medium leading-tight tracking-tight flex items-start gap-3">

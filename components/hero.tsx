@@ -87,7 +87,7 @@ export default function Hero() {
             {/* Profile image with frame */}
             <div className="relative z-10 w-64 h-64 md:w-80 md:h-80 rounded-2xl overflow-hidden border-4 border-white dark:border-slate-800 shadow-xl bg-white dark:bg-slate-900">
               <img
-                src="/images/dp.jpg"
+                src="/images/dp.jpeg"
                 alt="Poojan Brahmbhatt"
                 className="w-full h-full object-cover"
               />

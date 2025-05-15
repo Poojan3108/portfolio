@@ -4,6 +4,7 @@ import  Projects  from "@/components/projects"
 import { Research } from "@/components/research"
 import { Certificates } from "@/components/certificates"
 import { Footer } from "@/components/footer"
+import { Experience } from "@/components/experience"
 
 export default function Home() {
   return (
@@ -11,8 +12,8 @@ export default function Home() {
       <Navbar />
       <Hero />
       <Projects />
+      <Experience />
       <Research />
-      {/* <Certificates /> */}
       <Footer />
       
     </main>

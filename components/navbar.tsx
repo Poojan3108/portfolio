@@ -22,7 +22,7 @@ export function Navbar() {
   const navLinks = [
     { href: "#projects", label: "Projects" },
     { href: "#research", label: "Research" },
-    { href: "#certificates", label: "Certificates" },
+    { href: "#experience", label: "Experience" },
   ]
 
   return (

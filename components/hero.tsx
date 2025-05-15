@@ -36,7 +36,7 @@ export default function Hero() {
               "text-xl text-muted-foreground",
               isVisible ? "animate-in stagger-1" : "opacity-0"
             )}>
-              I'm <span className="font-medium text-foreground">Poojan Brahmbhatt</span>, a developer specializing in AI, Machine Learning, and Web Development.
+              I'm <span className="font-medium text-foreground">Poojan Brahmbhatt</span>, a developer specializing in AI, Machine Learning, Web Development and Project Management.
             </p>
 
             <div className={cn(

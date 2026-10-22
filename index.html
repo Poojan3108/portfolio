@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Poojan Brahmbhatt</title>
+<meta name="description" content="Poojan Brahmbhatt, M.S. Applied Data Science at USC. Machine learning, NLP, and LLM projects with live demos.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+<style>
+/* Layout: dark single page following the owner's previous site: sticky header, "Hello." hero with photo and tilted badges, centered section intros, navy cards, dot timeline. Single dark theme by design. */
+:root{
+  --bg:#18191d; --bg-alt:#1c1d22; --card:#111a2e; --card-2:#16213a; --line:#262a33; --line-card:#22304d;
+  --fg:#f4f5f7; --text:#c9ced6; --muted:#8b93a1;
+  --blue:#5aaefc; --blue-ink:#0d1b2a; --yellow:#f5c518; --teal:#5eead4; --chip:#1b2338;
+  --font:"Poppins","Segoe UI",system-ui,sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{background:var(--bg);color:var(--fg);font-family:var(--font);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:8px}
+.container{max-width:1160px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+svg.i{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* header */
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:rgba(24,25,29,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header .container{display:flex;align-items:center;justify-content:space-between;gap:16px;height:72px}
+.brand{font-weight:600;font-size:20px;text-decoration:none;white-space:nowrap}
+nav{display:flex;align-items:center;gap:30px;font-weight:500}
+nav a{text-decoration:none;color:var(--fg)}
+nav a:hover{color:var(--blue)}
+.pill-outline{border:1px solid var(--line);border-radius:999px;padding:9px 26px}
+.pill-outline:hover{border-color:var(--blue)}
+@media (max-width:720px){nav .hide-sm{display:none} .brand{font-size:17px}}
+
+/* hero */
+.hero{position:relative;overflow:hidden}
+.hero .container{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:40px;align-items:center;padding-block:72px 88px}
+@media (max-width:880px){.hero .container{grid-template-columns:minmax(0,1fr);padding-block:44px 56px}}
+.hello{font-size:clamp(72px,12vw,128px);font-weight:300;letter-spacing:-.04em;line-height:1;margin:0 0 30px}
+.hello span{color:var(--blue)}
+.intro{font-size:clamp(19px,2.2vw,25px);font-weight:400;color:var(--muted);line-height:1.6;max-width:30em;margin:0}
+.intro b{color:var(--fg);font-weight:600}
+.edu{display:inline-flex;align-items:center;gap:8px;margin-top:18px;font-size:15px;color:var(--text);background:var(--card);border:1px solid var(--line-card);border-radius:999px;padding:6px 14px}
+.edu::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--teal)}
+.cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+.btn{display:inline-flex;align-items:center;gap:12px;font-weight:500;font-size:17px;text-decoration:none;border-radius:999px;padding:15px 30px;transition:transform .15s ease,background .15s ease,border-color .15s ease}
+.btn:hover{transform:translateY(-1px)}
+.btn-primary{background:var(--blue);color:var(--blue-ink)}
+.btn-primary:hover{background:#7cc0ff}
+.btn-ghost{border:1px solid var(--line);color:var(--fg)}
+.btn-ghost:hover{border-color:var(--blue)}
+.socials{display:flex;align-items:center;gap:22px;margin-top:40px;color:var(--muted);font-size:15px}
+.socials a{display:inline-flex;align-items:center;gap:8px;text-decoration:none}
+.socials a:hover{color:var(--fg)}
+.socials svg.i{width:24px;height:24px}
+
+.portrait{position:relative;justify-self:center;width:min(100%,420px);margin-block:30px}
+.portrait::before{content:"";position:absolute;inset:-22%;background:radial-gradient(closest-side,rgba(90,174,252,.10),transparent);z-index:0}
+.frame{position:relative;z-index:1;border-radius:22px;padding:5px;background:#1f2a40;box-shadow:0 20px 60px rgba(0,0,0,.45)}
+.frame img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:18px}
+.badge{position:absolute;z-index:2;background:#1d2638;color:var(--fg);font-weight:600;font-size:17px;padding:10px 22px;border-radius:14px;box-shadow:0 8px 24px rgba(0,0,0,.4);white-space:nowrap}
+.badge.top{top:-26px;right:-18px;transform:rotate(6deg)}
+.badge.bottom{bottom:-24px;left:-22px;transform:rotate(-6deg)}
+@media (max-width:520px){.badge{font-size:14px;padding:8px 14px}.badge.top{right:-6px}.badge.bottom{left:-6px}}
+
+/* sections */
+section.block{padding-block:84px;border-top:1px solid var(--line)}
+section.alt{background:var(--bg-alt)}
+.sec-head{text-align:center;max-width:760px;margin:0 auto 52px}
+.eyebrow{font-size:15px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--yellow);margin:0 0 6px}
+.eyebrow.blue{color:var(--blue)}
+.sec-head h2{font-size:clamp(34px,5vw,48px);font-weight:700;letter-spacing:-.02em;line-height:1.15;margin:0 0 14px;text-wrap:balance}
+.sec-head p{font-size:clamp(17px,2vw,21px);color:var(--muted);margin:0}
+.sec-head p.eyebrow{font-size:15px;color:var(--yellow);margin:0 0 6px}
+.left-head{margin:0 0 52px}
+.left-head h2{font-size:clamp(32px,4.5vw,44px);font-weight:700;letter-spacing:-.02em;margin:0;display:inline-block;padding-bottom:12px;position:relative}
+.left-head h2::after{content:"";position:absolute;left:0;bottom:0;width:96px;height:3px;border-radius:3px;background:var(--blue)}
+
+/* cards */
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+@media (max-width:980px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.grid{grid-template-columns:minmax(0,1fr)}}
+.card{background:linear-gradient(180deg,var(--card),#121b2c);border:1px solid var(--line-card);border-radius:18px;display:flex;flex-direction:column;min-width:0;transition:transform .2s ease,border-color .2s ease}
+.card:hover{transform:translateY(-3px);border-color:#31456d}
+.card:hover h3{color:var(--yellow)}
+.card-body{padding:30px 30px 24px;display:flex;flex-direction:column;gap:14px;flex:1}
+.card h3{font-size:23px;font-weight:600;letter-spacing:-.01em;line-height:1.3;margin:0;transition:color .2s ease}
+.card p{margin:0;color:var(--text);font-size:16.5px;line-height:1.6}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:auto 0 0;padding:6px 0 0;list-style:none}
+.chips li{background:var(--chip);color:var(--fg);font-size:14px;font-weight:500;padding:4px 12px;border-radius:999px}
+.card-foot{display:flex;flex-wrap:wrap;gap:22px;border-top:1px solid var(--line-card);padding:16px 30px;color:var(--muted);font-size:15.5px}
+.card-foot a{display:inline-flex;align-items:center;gap:8px;text-decoration:none}
+.card-foot a:hover{color:var(--fg)}
+.card-foot .live{color:var(--blue)}
+.card-foot .live:hover{color:#8cc6ff}
+.card-foot span{display:inline-flex;align-items:center;gap:8px;opacity:.7}
+
+/* featured */
+.featured{display:grid;gap:28px}
+.feature .card-body{padding:34px 34px 26px}
+.feature .tagline{color:var(--blue);font-weight:500;font-size:15px;letter-spacing:.02em;margin-top:-6px}
+.feature h3{font-size:28px}
+.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:6px 0 4px}
+@media (max-width:760px){.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.metric{background:rgba(255,255,255,.03);border:1px solid var(--line-card);border-radius:12px;padding:12px 14px;min-width:0}
+.metric b{display:block;font-size:24px;font-weight:600;color:var(--fg);font-variant-numeric:tabular-nums;line-height:1.2}
+.metric span{display:block;font-size:13.5px;color:var(--muted);line-height:1.4;margin-top:4px}
+.feature .card-foot{padding:16px 34px}
+.more-title{font-size:24px;font-weight:600;margin:72px 0 26px}
+
+/* publications */
+.pubs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}
+@media (max-width:900px){.pubs{grid-template-columns:minmax(0,1fr)}}
+.pub .card-body{padding:32px}
+.pub-title{display:flex;gap:14px;align-items:flex-start}
+.pub-title svg.i{width:24px;height:24px;margin-top:5px;color:var(--muted)}
+.pub h3{font-size:21px}
+.pub .chips li{background:#13323a;color:var(--teal)}
+.pub .chips li.status{background:#3a2f0e;color:var(--yellow)}
+.pub .field{color:var(--muted);font-size:14px;margin-top:2px}
+
+/* timeline */
+.timeline{position:relative;display:grid;gap:44px;padding-left:42px}
+.timeline::before{content:"";position:absolute;left:12px;top:10px;bottom:10px;width:2px;background:var(--line)}
+.job{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:8px 40px}
+@media (max-width:760px){.job{grid-template-columns:minmax(0,1fr)}}
+.job::before{content:"";position:absolute;left:-42px;top:4px;width:24px;height:24px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 6px var(--bg)}
+section.alt .job::before{box-shadow:0 0 0 6px var(--bg-alt)}
+.job h3{font-size:21px;font-weight:600;margin:0;line-height:1.35}
+.job .place{color:var(--muted)}
+.job h4{font-size:20px;font-weight:600;margin:0}
+.job .dates{color:var(--muted);margin-bottom:8px}
+.job ul{margin:0;padding-left:20px;color:var(--text);display:grid;gap:6px}
+
+/* skills */
+.skills{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+@media (max-width:760px){.skills{grid-template-columns:minmax(0,1fr)}}
+.skill{background:var(--card);border:1px solid var(--line-card);border-radius:18px;padding:26px 28px}
+.skill h3{margin:0 0 14px;font-size:18px;font-weight:600}
+.skill .chips{margin:0;padding:0}
+
+/* footer */
+footer{border-top:1px solid var(--line);padding-block:44px}
+footer .container{display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:center;color:var(--muted)}
+.foot-links{display:flex;flex-wrap:wrap;gap:22px;align-items:center}
+.foot-links a{display:inline-flex;align-items:center;gap:8px;text-decoration:none}
+.foot-links a:hover{color:var(--fg)}
+.email-copy{display:inline-flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line-card);border-radius:999px;padding:6px 6px 6px 16px;color:var(--fg);max-width:100%}
+.email-copy span{overflow-wrap:anywhere}
+.email-copy button{font:inherit;font-size:14px;font-weight:500;background:var(--blue);color:var(--blue-ink);border:0;border-radius:999px;padding:6px 14px;cursor:pointer}
+</style>
+</head>
+<body style="margin:0">
+
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></symbol>
+  <symbol id="i-ext" viewBox="0 0 24 24"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></symbol>
+  <symbol id="i-gh" viewBox="0 0 24 24"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></symbol>
+  <symbol id="i-in" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m10 8 6 4-6 4z"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+</svg>
+
+<header>
+  <div class="container">
+    <a class="brand" href="#top">Poojan Brahmbhatt</a>
+    <nav aria-label="Main">
+      <a class="hide-sm" href="#projects">Projects</a>
+      <a class="hide-sm" href="#research">Research</a>
+      <a class="hide-sm" href="#experience">Experience</a>
+      <a class="pill-outline" href="Poojan_Brahmbhatt_Resume.pdf" target="_blank" rel="noopener">Resume</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" aria-label="Introduction">
+    <div class="container">
+      <div>
+        <h1 class="hello">Hello<span>.</span></h1>
+        <p class="intro">I'm <b>Poojan Brahmbhatt</b>, a data scientist specializing in Machine Learning, NLP, and LLM applications, building systems that are measured, tested, and live.</p>
+        <div class="edu">M.S. Applied Data Science, USC · Dec 2027</div>
+        <div class="cta">
+          <a class="btn btn-primary" href="mailto:poojan31.brahmbhatt@gmail.com"><svg class="i"><use href="#i-mail"/></svg>Get in touch</a>
+          <a class="btn btn-ghost" href="#projects"><svg class="i"><use href="#i-ext"/></svg>View my work</a>
+        </div>
+        <div class="socials">
+          <a href="https://www.linkedin.com/in/poojan-brahmbhatt/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg class="i"><use href="#i-in"/></svg></a>
+          <a href="https://github.com/Poojan3108" target="_blank" rel="noopener" aria-label="GitHub"><svg class="i"><use href="#i-gh"/></svg></a>
+          <a href="Poojan_Brahmbhatt_Resume.pdf" target="_blank" rel="noopener">Resume</a>
+        </div>
+      </div>
+      <div class="portrait">
+        <div class="frame"><img src="dp.jpg" alt="Poojan Brahmbhatt" width="463" height="463"></div>
+        <div class="badge top">AI Developer</div>
+        <div class="badge bottom">ML Specialist</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="projects">
+    <div class="container">
+      <div class="sec-head">
+        <p class="eyebrow">Portfolio</p>
+        <h2>Projects</h2>
+        <p>Machine learning, NLP, and LLM systems, each deployed with a live demo you can try.</p>
+      </div>
+
+      <div class="featured">
+        <article class="card feature">
+          <div class="card-body">
+            <h3>VeriSearch</h3>
+            <div class="tagline">Multi-agent research assistant that checks its own work</div>
+            <p>Ask any question and four AI agents research it together. A planner breaks it into sub-questions, a researcher searches the web, a writer drafts a cited report, and a critic rejects claims the sources don't support, sending the draft back until it holds up.</p>
+            <div class="metrics">
+              <div class="metric"><b>4</b><span>agents in a LangGraph workflow</span></div>
+              <div class="metric"><b>12</b><span>web sources per report</span></div>
+              <div class="metric"><b>3 / 3</b><span>test runs where the critic forced a revision</span></div>
+              <div class="metric"><b>10</b><span>low-reliability domains filtered</span></div>
+            </div>
+            <ul class="chips"><li>Python</li><li>LangGraph</li><li>Groq LLMs</li><li>Tavily</li><li>Pydantic</li><li>Streamlit</li></ul>
+          </div>
+          <div class="card-foot">
+            <a class="live" href="https://verisearch.streamlit.app" target="_blank" rel="noopener"><svg class="i"><use href="#i-play"/></svg>Live Demo</a>
+            <a href="https://github.com/Poojan3108/verisearch" target="_blank" rel="noopener"><svg class="i"><use href="#i-gh"/></svg>View Source</a>
+          </div>
+        </article>
+
+        <article class="card feature">
+          <div class="card-body">
+            <h3>ReviewLens</h3>
+            <div class="tagline">Expert and customer reviews for any product, side by side</div>
+            <p>Type a product name and ReviewLens finds expert reviews on the web, scores them with a sentiment model I trained, and breaks opinions down by aspect such as battery, comfort, and price. Shoppers can paste Amazon or Best Buy reviews to compare what experts and owners actually say.</p>
+            <div class="metrics">
+              <div class="metric"><b>42,411</b><span>reviews used to train the rating model</span></div>
+              <div class="metric"><b>94%</b><span>predictions within one star</span></div>
+              <div class="metric"><b>88–90%</b><span>within one star on unseen product types</span></div>
+              <div class="metric"><b>84%</b><span>positive / neutral / negative correct</span></div>
+            </div>
+            <ul class="chips"><li>Python</li><li>scikit-learn</li><li>TF-IDF</li><li>Groq LLMs</li><li>SQL</li><li>Streamlit</li></ul>
+          </div>
+          <div class="card-foot">
+            <a class="live" href="https://ai-reviewlens.streamlit.app/" target="_blank" rel="noopener"><svg class="i"><use href="#i-play"/></svg>Live Demo</a>
+            <a href="https://github.com/Poojan3108/reviewlens" target="_blank" rel="noopener"><svg class="i"><use href="#i-gh"/></svg>View Source</a>
+          </div>
+        </article>
+
+        <article class="card feature">
+          <div class="card-body">
+            <h3>HitScope</h3>
+            <div class="tagline">Two decades of hit music on Spotify and the Billboard Hot 100</div>
+            <p>An interactive analysis of how hit songs changed from 1999 to 2019, what drives popularity, and whether Spotify hits also chart in the US. It joins Spotify audio features, the Spotify Web API, and Billboard chart history, with K-Means and PCA to find song types.</p>
+            <div class="metrics">
+              <div class="metric"><b>57 s</b><span>shorter: average hit in 2019 vs 1999</span></div>
+              <div class="metric"><b>75%</b><span>of 1,926 Spotify hits charted on the Hot 100</span></div>
+              <div class="metric"><b>330K</b><span>Billboard chart entries matched</span></div>
+              <div class="metric"><b>52</b><span>automated tests</span></div>
+            </div>
+            <ul class="chips"><li>Python</li><li>Pandas</li><li>scikit-learn</li><li>REST API</li><li>Altair</li><li>pytest</li></ul>
+          </div>
+          <div class="card-foot">
+            <a class="live" href="https://hit-scope.streamlit.app/" target="_blank" rel="noopener"><svg class="i"><use href="#i-play"/></svg>Live Demo</a>
+            <a href="https://github.com/Poojan3108/spotify-music-trends" target="_blank" rel="noopener"><svg class="i"><use href="#i-gh"/></svg>View Source</a>
+          </div>
+        </article>
+      </div>
+
+      <h3 class="more-title">More projects</h3>
+      <div class="grid">
+        <article class="card"><div class="card-body"><h3>Digitone</h3><p>A system that creates personalized ringtones from a user's description using Meta's MusicGen model.</p><ul class="chips"><li>MusicGen-small</li><li>Transformers</li><li>Flask</li><li>React.js</li><li>Python</li></ul></div>
+          <div class="card-foot"><a href="https://github.com/Poojan3108/Digitone" target="_blank" rel="noopener"><svg class="i"><use href="#i-gh"/></svg>View Source</a></div></article>
+        <article class="card"><div class="card-body"><h3>Mapping of Possible Terrestrial Habitat for Wildlife</h3><p>Uses deep learning and remote sensing imagery to segment forest cover and map possible habitats for wildlife.</p><ul class="chips"><li>DeepLabV3+</li><li>U-Net</li><li>TransUNet</li><li>TensorFlow</li></ul></div>
+          <div class="card-foot"><a href="https://github.com/Poojan3108/Mapping-of-Possible-Terrestrial-Habitat-for-Wildlife" target="_blank" rel="noopener"><svg class="i"><use href="#i-gh"/></svg>View Source</a></div></article>
+        <article class="card"><div class="card-body"><h3>Phishing Domain Detection</h3><p>A data science project that detects phishing domains from 84 features of their URLs, domains, and pages.</p><ul class="chips"><li>Python</li><li>scikit-learn</li><li>Keras</li><li>TensorFlow</li></ul></div>
+          <div class="card-foot"><a href="https://github.com/Poojan3108/Phishing-Domain-Detection" target="_blank" rel="noopener"><svg class="i"><use href="#i-gh"/></svg>View Source</a></div></article>
+        <article class="card"><div class="card-body"><h3>Product Sentiment Analysis</h3><p>An application that sorts customer opinions about a product by sentiment. The first version of what became ReviewLens.</p><ul class="chips"><li>Python</li><li>React.js</li><li>NLP</li><li>TextBlob</li></ul></div>
+          <div class="card-foot"><a href="https://github.com/Poojan3108/Sentiment_Analysis" target="_blank" rel="noopener"><svg class="i"><use href="#i-gh"/></svg>View Source</a></div></article>
+        <article class="card"><div class="card-body"><h3>Event Ledger</h3><p>A blockchain-verified certificate generation and validation system, so anyone can confirm a certificate is genuine.</p><ul class="chips"><li>Solidity</li><li>Flutter</li><li>Dart</li><li>Truffle</li></ul></div></article>
+        <article class="card"><div class="card-body"><h3>KBC Mindfest</h3><p>A fun, interactive quiz platform with multiple categories and difficulty levels, and Google sign-in.</p><ul class="chips"><li>React.js</li><li>MongoDB</li><li>Google OAuth</li></ul></div></article>
+        <article class="card"><div class="card-body"><h3>Crop Prediction System</h3><p>An IoT-based system that predicts the best crop for a field from live soil moisture readings.</p><ul class="chips"><li>Moisture Sensor</li><li>Arduino</li><li>Python</li><li>Django</li></ul></div></article>
+        <article class="card"><div class="card-body"><h3>RawBeauty</h3><p>An e-commerce website for natural beauty products with custom themes, built with a team at DSU InfoTech.</p><ul class="chips"><li>WordPress</li><li>Django</li></ul></div></article>
+        <article class="card"><div class="card-body"><h3>Text-to-Speech Converter</h3><p>A Python tool that reads written text aloud using the offline pyttsx3 speech engine.</p><ul class="chips"><li>Python</li><li>pyttsx3</li></ul></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block alt" id="research">
+    <div class="container">
+      <div class="sec-head">
+        <p class="eyebrow">Scholarly Work</p>
+        <h2>Research Publications</h2>
+        <p>My contributions to research in deep learning, remote sensing, and semantic search.</p>
+      </div>
+      <div class="pubs">
+        <article class="card pub"><div class="card-body">
+          <div class="pub-title"><svg class="i"><use href="#i-file"/></svg><h3>A Lightweight Deep Learning Framework for Land Cover Classification from Sentinel-2 Imagery</h3></div>
+          <ul class="chips" style="margin:0"><li>2025 6th International Conference for Emerging Technology (INCET)</li><li>2nd Author</li><li class="status">Published</li></ul>
+          <p>Fine-tuned DenseNet121 on 27,000 EuroSAT satellite images across 10 land cover classes, reaching 90.79% accuracy and 91% F1, ahead of EfficientNetB2 and ResNet50.</p>
+          <div class="field">Deep Learning with Remote Sensing</div></div>
+          <div class="card-foot"><a class="live" href="https://ieeexplore.ieee.org/document/11140199" target="_blank" rel="noopener"><svg class="i"><use href="#i-ext"/></svg>IEEE Xplore</a></div></article>
+        <article class="card pub"><div class="card-body">
+          <div class="pub-title"><svg class="i"><use href="#i-file"/></svg><h3>Semantic Resume Retrieval for Intelligent Recruitment: A Survey and Experimental Evaluation</h3></div>
+          <ul class="chips" style="margin:0"><li>ICACS 2026</li><li>2nd Author</li><li class="status">Accepted · Nov 2026</li></ul>
+          <p>Built a semantic search pipeline with FAISS and sentence-transformer embeddings over 2,483 resumes in 24 job categories. The smallest model, MiniLM, performed best at 0.877 NDCG@5 while embedding about 8x faster.</p>
+          <div class="field">NLP and Information Retrieval</div></div>
+          <div class="card-foot"><span>Publication link coming after the conference</span></div></article>
+        <article class="card pub"><div class="card-body">
+          <div class="pub-title"><svg class="i"><use href="#i-file"/></svg><h3>Comparative Analysis of U-Net, DeepLabV3+ and TransUNet for Forest Ecosystem Assessment in Wildlife Conservation Using Satellite Imagery</h3></div>
+          <ul class="chips" style="margin:0"><li>Manuscript</li><li>Co-author</li><li class="status">In progress</li></ul>
+          <p>Compares three segmentation architectures for mapping forest cover from 5,108 satellite images. TransUNet reached the best test accuracy at 83.63%.</p>
+          <div class="field">Deep Learning with Remote Sensing</div></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="experience">
+    <div class="container">
+      <div class="left-head">
+        <p class="eyebrow blue">Experience</p>
+        <h2>Explore My Professional Journey</h2>
+      </div>
+      <div class="timeline">
+        <div class="job">
+          <div><h3>Digikentro</h3><div class="place">India</div></div>
+          <div><h4>AI/ML Intern</h4><div class="dates">Aug 2025 – Dec 2025</div>
+            <ul><li>Deployed predictive ML models and automation features into a large enterprise client application with a team of 10+.</li><li>Built end-to-end ML pipelines in Python on 10K+ records, from feature engineering and tuning to production.</li></ul></div>
+        </div>
+        <div class="job">
+          <div><h3>CHARUSAT Space Research and Technology Center</h3><div class="place">Anand, India</div></div>
+          <div><h4>Research Intern</h4><div class="dates">Dec 2024 – May 2025</div>
+            <ul><li>Developed a system for mapping possible terrestrial habitats for wildlife using remote sensing data and deep learning.</li><li>Benchmarked U-Net, DeepLabV3+, and TransUNet on 5,108 satellite images; TransUNet reached 83.63% test accuracy.</li></ul></div>
+        </div>
+        <div class="job">
+          <div><h3>iNeuron.ai</h3><div class="place">Remote</div></div>
+          <div><h4>Data Science Intern</h4><div class="dates">May 2024 – June 2024</div>
+            <ul><li>Detected phishing domains with a Random Forest trained on 84 URL and domain features from 58K+ domains, reaching 94% accuracy and F1.</li><li>Segmented retail customers into buyer personas with K-Means clustering.</li></ul></div>
+        </div>
+        <div class="job">
+          <div><h3>DSU InfoTech</h3><div class="place">Vadodara, India</div></div>
+          <div><h4>Web Development Intern</h4><div class="dates">May 2023 – June 2023</div>
+            <ul><li>Developed the RawBeauty e-commerce website with WordPress and Django as part of a development team.</li></ul></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block alt" id="skills">
+    <div class="container">
+      <div class="sec-head">
+        <p class="eyebrow">Toolkit</p>
+        <h2>Skills</h2>
+      </div>
+      <div class="skills">
+        <div class="skill"><h3>Languages</h3><ul class="chips"><li>Python</li><li>SQL</li><li>Java</li><li>C/C++</li></ul></div>
+        <div class="skill"><h3>Machine Learning</h3><ul class="chips"><li>scikit-learn</li><li>PyTorch</li><li>TensorFlow/Keras</li><li>CNNs</li><li>Transfer Learning</li><li>Computer Vision</li><li>K-Means</li><li>PCA</li></ul></div>
+        <div class="skill"><h3>LLMs &amp; NLP</h3><ul class="chips"><li>LangGraph</li><li>LangChain</li><li>RAG</li><li>Multi-Agent Systems</li><li>FAISS</li><li>Sentence Transformers</li></ul></div>
+        <div class="skill"><h3>Data &amp; Tools</h3><ul class="chips"><li>Pandas</li><li>NumPy</li><li>MySQL</li><li>MongoDB</li><li>Git</li><li>Streamlit</li><li>pytest</li></ul></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="contact">
+  <div class="container">
+    <div>© 2026 Poojan Brahmbhatt. All rights reserved.</div>
+    <div class="foot-links">
+      <div class="email-copy"><span id="email-text">poojan31.brahmbhatt@gmail.com</span><button type="button" id="copy-email">Copy</button></div>
+      <a href="https://www.linkedin.com/in/poojan-brahmbhatt/" target="_blank" rel="noopener"><svg class="i"><use href="#i-in"/></svg>LinkedIn</a>
+      <a href="https://github.com/Poojan3108" target="_blank" rel="noopener"><svg class="i"><use href="#i-gh"/></svg>GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var btn=document.getElementById('copy-email');
+  btn.addEventListener('click',function(){
+    var el=document.getElementById('email-text');
+    var ok=function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},1600)};
+    var sel=function(){var r=document.createRange();r.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(r);btn.textContent='Selected'};
+    try{navigator.clipboard.writeText(el.textContent).then(ok,sel)}catch(e){sel()}
+  });
+})();
+</script>
+
+</body>
+</html>
